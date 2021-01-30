@@ -15,7 +15,7 @@ pip install -r requirements.txt
 
 A set up the following variables in the OS Environment:
 DISCORD_TOKEN
-DISCORD_GUILD
+DISCORD_CHANNEL
 TELEGRAM_TOKEN
 TELEGRAM_GROUP
 
