@@ -1,8 +1,8 @@
+import asyncio
 import os
+import sys
 import threading
-
 import discord
-
 import telebot
 
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN', '-')
@@ -32,10 +32,7 @@ async def on_message(message):
 
 
 telegram_thread = threading.Thread(target=bot.polling, args=(), daemon=True)
-discord_thread = threading.Thread(target=client.run, args=(DISCORD_TOKEN,), daemon=True)
-
 telegram_thread.start()
-discord_thread.start()
 
+client.run(DISCORD_TOKEN)
 telegram_thread.join()
-discord_thread.join()
