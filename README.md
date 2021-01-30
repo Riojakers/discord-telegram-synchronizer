@@ -22,8 +22,8 @@ TELEGRAM_GROUP
 ## Usage
 python3 bot.py
 
-# Docker version
 
+# Docker version
 ## Prerequisites
 You need have installed docker desktop (for Windows and Mac) or Docker Engine (in linux versions).
 
