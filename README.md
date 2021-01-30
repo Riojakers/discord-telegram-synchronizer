@@ -39,7 +39,7 @@ docker build . -t dt-synchronizer
 ```
 docker run -d --name dt-synchronizer \
 -e DISCORD_TOKEN='value' \
--e DISCORD_GUILD='value' \
+-e DISCORD_CHANNEL='value' \
 -e TELEGRAM_TOKEN='value' \
 -e TELEGRAM_GROUP='value' \
 dt-synchronizer
