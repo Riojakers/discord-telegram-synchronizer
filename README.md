@@ -23,10 +23,24 @@ TELEGRAM_GROUP
 python3 bot.py
 
 
+
+
 # Docker version
 ## Prerequisites
-You need have installed docker desktop (for Windows and Mac) or Docker Engine (in linux versions).
+You need have installed docker desktop (for Windows and Mac) or Docker Engine (in Linux distributions).
+
 
 ## Usage
-TODO: Define an example of the usage method with docker and env variables.
+First, you need to build the docker image with the following command:
+```
+docker build . -t dt-synchronizer
+```
 
+```
+docker run -d --name dt-synchronizer \
+-e DISCORD_TOKEN='value' \
+-e DISCORD_GUILD='value' \
+-e TELEGRAM_TOKEN='value' \
+-e TELEGRAM_GROUP='value' \
+dt-synchronizer
+```
