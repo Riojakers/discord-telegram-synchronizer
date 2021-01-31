@@ -36,11 +36,12 @@ First, you need to build the docker image with the following command:
 docker build . -t dt-synchronizer
 ```
 
-```
+Once the image is built, you can execute it with the following environments values:
+````
 docker run -d --name dt-synchronizer \
 -e DISCORD_TOKEN='value' \
 -e DISCORD_CHANNEL='value' \
 -e TELEGRAM_TOKEN='value' \
 -e TELEGRAM_GROUP='value' \
 dt-synchronizer
-```
+``
