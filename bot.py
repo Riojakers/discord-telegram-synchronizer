@@ -17,6 +17,8 @@ bot = telebot.TeleBot(token=TELEGRAM_TOKEN)
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def message_handler(message):
     webhook = discord.Webhook.from_url(DISCORD_WEBHOOK_URL, adapter=discord.RequestsWebhookAdapter())
+
+    # user reply other user or bot
     if message.reply_to_message:
         embed = discord.Embed(title='', description=message.reply_to_message.text)
         embed.set_author(name=message.reply_to_message.from_user.username)
