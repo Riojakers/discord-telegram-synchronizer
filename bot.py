@@ -17,7 +17,12 @@ bot = telebot.TeleBot(token=TELEGRAM_TOKEN)
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def message_handler(message):
     webhook = discord.Webhook.from_url(DISCORD_WEBHOOK_URL, adapter=discord.RequestsWebhookAdapter())
-    webhook.send(message.text, username=message.from_user.username)
+    if message.reply_to_message:
+        embed = discord.Embed(title='', description=message.reply_to_message.text)
+        embed.set_author(name=message.reply_to_message.from_user.username)
+        webhook.send(message.text, username=message.from_user.username, embed=embed)
+    else:
+        webhook.send(message.text, username=message.from_user.username)
     # client.loop.create_task(client.get_channel(int(DISCORD_CHANNEL)).send(message_to_discord, username = 'Test'))
 
 
@@ -25,7 +30,7 @@ def message_handler(message):
 async def on_message(message):
     if message.author == client.user:
         return
-    if "#" in str(message.author):
+    if "0000" in str(message.author):
         return
 
     if int(message.channel.id) == int(DISCORD_CHANNEL):
