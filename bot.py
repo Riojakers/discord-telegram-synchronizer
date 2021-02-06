@@ -1,12 +1,12 @@
 import asyncio
 import os
-import sys
 import threading
 import discord
 import telebot
 
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN', '-')
 DISCORD_CHANNEL = os.getenv('DISCORD_CHANNEL', '-')
+DISCORD_WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL', '-')
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN', '-')
 TELEGRAM_GROUP = os.getenv('TELEGRAM_GROUP', '-')
 
@@ -16,13 +16,16 @@ bot = telebot.TeleBot(token=TELEGRAM_TOKEN)
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def message_handler(message):
-    message_to_discord = message.from_user.username + ': ' + message.text
-    client.loop.create_task(client.get_channel(int(DISCORD_CHANNEL)).send(message_to_discord))
+    webhook = discord.Webhook.from_url(DISCORD_WEBHOOK_URL, adapter=discord.RequestsWebhookAdapter())
+    webhook.send(message.text, username=message.from_user.username)
+    # client.loop.create_task(client.get_channel(int(DISCORD_CHANNEL)).send(message_to_discord, username = 'Test'))
 
 
 @client.event
 async def on_message(message):
     if message.author == client.user:
+        return
+    if "#" in str(message.author):
         return
 
     if int(message.channel.id) == int(DISCORD_CHANNEL):
