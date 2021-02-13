@@ -14,6 +14,7 @@ client = discord.Client()
 bot = telebot.TeleBot(token=TELEGRAM_TOKEN)
 
 
+''' Telegram Bot Handler'''
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def message_handler(message):
     webhook = discord.Webhook.from_url(DISCORD_WEBHOOK_URL, adapter=discord.RequestsWebhookAdapter())
@@ -28,6 +29,8 @@ def message_handler(message):
     # client.loop.create_task(client.get_channel(int(DISCORD_CHANNEL)).send(message_to_discord, username = 'Test'))
 
 
+
+''' Discord Bot Handler '''
 @client.event
 async def on_message(message):
     if message.author == client.user:
